@@ -1,0 +1,183 @@
+﻿<Window x:Class="OpifexToolkit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpifexToolkit"
+        mc:Ignorable="d"
+        Title="Opifex Development Toolkit" Height="620.463" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <TabControl HorizontalAlignment="Left" Height="589" VerticalAlignment="Top" Width="792">
+            <TabItem Header="Source Content Importer">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="139*"/>
+                        <ColumnDefinition Width="254*"/>
+                    </Grid.ColumnDefinitions>
+                    <TabControl HorizontalAlignment="Left" Width="786" Grid.ColumnSpan="2">
+                        <TabItem Header="Basic">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="71*"/>
+                                    <ColumnDefinition Width="709*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="394*"/>
+                                    <RowDefinition Height="29*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Source Engine Game Content Pack Importer&#xD;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="780" FontSize="24" FontWeight="Bold" Margin="0,-9,0,0" Grid.ColumnSpan="2"/>
+                                <Label Content="The program will find, extract (and decompile/recompile for models), and package all models used from&#xA;other source games (not including GMOD or HL2 content) into a single folder&#xA;" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top" FontSize="16" Grid.ColumnSpan="2"/>
+                                <Label Content="Map VMF&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,68,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Height="36" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="ImportMapPathBox" HorizontalAlignment="Left" Height="23" Margin="41.416,76,0,0" VerticalAlignment="Top" Width="500" Grid.Column="1"/>
+                                <Button Content="Choose Map" HorizontalAlignment="Left" Margin="579.416,77,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_ChooseVMF" Grid.Column="1"/>
+                                <Label Content="The location of your VMF to be scanned for custom game content" HorizontalAlignment="Left" Margin="12,99,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2"/>
+                                <Label Content="Steam Library&#xA;" HorizontalAlignment="Left" Margin="1,123,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="36" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="ImportLibraryPathBox" HorizontalAlignment="Left" Height="23" Margin="41.416,128,0,0" VerticalAlignment="Top" Width="500" Grid.Column="1"/>
+                                <Button Content="Choose Folder" HorizontalAlignment="Left" Margin="579.416,129,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_ChooseLibrary" Grid.Column="1"/>
+                                <Label Content="The location of your Steam Library to be scanned for Source Engine Games" HorizontalAlignment="Left" Margin="12,151,0,0" VerticalAlignment="Top" Width="538" Grid.ColumnSpan="2"/>
+                                <Label Content="Output Directory&#xA;" HorizontalAlignment="Left" Margin="1,177,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="36" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="ImportContentPackPathBox" HorizontalAlignment="Left" Height="23" Margin="41.416,181,0,0" VerticalAlignment="Top" Width="500" Grid.Column="1"/>
+                                <Button Content="Choose Folder" HorizontalAlignment="Left" Margin="579.416,182,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_ChooseOutputDir" Grid.Column="1"/>
+                                <Label Content="The location of your Content Pack folder to have the files imported to" HorizontalAlignment="Left" Margin="12,204,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2"/>
+                                <Label Content="Content Identifier&#xA;" HorizontalAlignment="Left" Margin="1,229,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="36" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="ImportContentIdentifierBox" HorizontalAlignment="Left" Height="23" Margin="41.416,233,0,0" VerticalAlignment="Top" Width="250" Grid.Column="1"/>
+                                <Label Content="Sets the name of an extra folder for the content pack. Helps to &#xD;&#xA;avoid some possible resource conflicts. Use letters, numbers, &#xD;&#xA;underscores, and dashes only." HorizontalAlignment="Left" Margin="12,256,0,0" VerticalAlignment="Top" Width="486" Height="59" IsHitTestVisible="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.ColumnSpan="2"/>
+                                <Label Content="Overall Progress" HorizontalAlignment="Left" Margin="4,423,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Width="118" Grid.ColumnSpan="2"/>
+                                <ProgressBar x:Name="ImportOverallPB" HorizontalAlignment="Left" Height="28" Margin="59.416,424,0,0" VerticalAlignment="Top" Width="643" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+                                    <ProgressBar.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform AngleX="1.66"/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="0.304"/>
+                                        </TransformGroup>
+                                    </ProgressBar.RenderTransform>
+                                </ProgressBar>
+                                <Label Content="Current Progress" HorizontalAlignment="Left" Margin="4,454,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="33" FontSize="14" Width="124" Grid.ColumnSpan="2"/>
+                                <ProgressBar x:Name="ImportCurrentPB" HorizontalAlignment="Left" Height="28" Margin="60.416,458,0,0" VerticalAlignment="Top" Width="642" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+                                    <ProgressBar.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform AngleX="1.66"/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="0.304"/>
+                                        </TransformGroup>
+                                    </ProgressBar.RenderTransform>
+                                </ProgressBar>
+                                <Label x:Name="ImportStatusText" Content="" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="695" Grid.Row="1" Grid.ColumnSpan="2"/>
+                                <Button x:Name="ImportStart" Content="Start" HorizontalAlignment="Left" Margin="599.416,493,0,0" VerticalAlignment="Top" Width="100" Height="32" Click="ImportStart_Click" FontSize="20" Grid.RowSpan="2" Grid.Column="1"/>
+                                <Label Content="Include Directory&#xA;" HorizontalAlignment="Left" Margin="1,317,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="36" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="IncludeContentPackPathBox" HorizontalAlignment="Left" Height="23" Margin="41.416,321,0,0" VerticalAlignment="Top" Width="500" Grid.Column="1"/>
+                                <Button Content="Choose Folder" HorizontalAlignment="Left" Margin="579.416,322,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_ChooseIncludeDir" Grid.Column="1"/>
+                                <Label Content="(Optional) The location of a folder to have separate content automatically incorporated &#xD;&#xA;into the generated content pack. Useful for when you have custom content that &#xD;&#xA;isn't directly from source engine games." HorizontalAlignment="Left" Margin="12,344,0,0" VerticalAlignment="Top" Width="486" Height="61" Grid.ColumnSpan="2"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Extras">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="7*"/>
+                                    <ColumnDefinition Width="759*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Model Options:" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="38" Width="192" FontSize="24" FontWeight="Bold" Margin="0,-10,0,0" RenderTransformOrigin="0.5,0.5">
+                                    <Label.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform AngleX="1.848"/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="1.468"/>
+                                        </TransformGroup>
+                                    </Label.RenderTransform>
+                                </Label>
+                                <Label Content="Remove LOD" Grid.Column="1" HorizontalAlignment="Left" Margin="0,21,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontSize="16" Width="101"/>
+                                <CheckBox x:Name="ModelStripLOD" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Margin="94,31,0,0" VerticalAlignment="Top" Width="16" Checked="ModelStripLOD_Checked" Unchecked="ModelStripLOD_UnChecked"/>
+                                <Label x:Name="RLODFilterLabel" Content="Filters" Grid.Column="1" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontSize="16" Width="101" IsEnabled="False"/>
+                                <TextBox x:Name="RLODFilterBox" Grid.Column="2" HorizontalAlignment="Left" Height="100" Margin="49,52,0,0" VerticalAlignment="Top" Width="100" AcceptsReturn="True" IsEnabled="False"/>
+                                <Label x:Name="RLODFilterDesc" Content="If set, will only remove LOD &#xD;&#xA;settings from model&#xD;&#xA;names/paths that contain &#xD;&#xA;the given strings (each &#xD;&#xA;separated by a new line).&#xD;&#xA;If empty, will remove LOD&#xD;&#xA;settings for every model&#xD;&#xA;imported." Grid.Column="1" HorizontalAlignment="Left" Margin="0,152,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="156" Height="178" IsEnabled="False"/>
+                                <Label Content="Skip Map Creation" Grid.Column="1" HorizontalAlignment="Left" Margin="0,305,0,0" VerticalAlignment="Top" FontSize="16" Width="140" Grid.ColumnSpan="2"/>
+                                <CheckBox x:Name="MapSkipCreate" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Margin="133,315,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.562,-0.8"/>
+                                <Label x:Name="MapSkipCreateDesc" Content="If set, will skip step 3 of the&#xD;&#xA;content importing process,&#xD;&#xA;which involves creating a &#xD;&#xA;new map with references &#xD;&#xA;to the new resources. &#xD;&#xA;This option is useful if you &#xD;&#xA;are simply using this &#xD;&#xA;program to create prop &#xD;&#xA;packs or similar." Grid.Column="1" HorizontalAlignment="Left" Margin="0,330,0,0" VerticalAlignment="Top" Width="156" Height="178" IsEnabled="False" Grid.ColumnSpan="2"/>
+                                <Label Content="Ignore Content ID" Grid.Column="2" HorizontalAlignment="Left" Margin="195,23,0,0" VerticalAlignment="Top" FontSize="16" Width="140"/>
+                                <CheckBox x:Name="IgnoreCID" Content="CheckBox" Grid.Column="2" HorizontalAlignment="Left" Margin="335,33,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.562,-0.8"/>
+                                <Label x:Name="IgnoreCIDDesc" Content="If set, force the content ID&#xD;&#xA;to a blank string when the&#xD;&#xA;importer runs. This will&#xD;&#xA;result in the exact same&#xD;&#xA;resource paths as the&#xD;&#xA;original games." Grid.Column="2" HorizontalAlignment="Left" Margin="195,48,0,0" VerticalAlignment="Top" Width="156" Height="178" IsEnabled="False"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Source Content Shrinker">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="139*"/>
+                        <ColumnDefinition Width="254*"/>
+                    </Grid.ColumnDefinitions>
+                    <TabControl HorizontalAlignment="Left" Width="786" Grid.ColumnSpan="2">
+                        <TabItem Header="Basic">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="71*"/>
+                                    <ColumnDefinition Width="709*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="394*"/>
+                                    <RowDefinition Height="29*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Source Engine Map Content Pack Shrinker" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="780" FontSize="24" FontWeight="Bold" Margin="0,-9,0,0" Grid.ColumnSpan="2"/>
+                                <Label Content="The program will find only the models, materials, and sounds used within a map and pack them into &#xD;&#xA;a single folder.&#xA;" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top" FontSize="16" Grid.ColumnSpan="2"/>
+                                <Label Content="Map VMF&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,68,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Height="36" Grid.ColumnSpan="2"/>
+                                <Button Content="Choose Map" HorizontalAlignment="Left" Margin="579.416,77,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_ShrinkChooseVMF" Grid.Column="1"/>
+                                <Label Content="The location of your VMF to be scanned for used resources" HorizontalAlignment="Left" Margin="12,99,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2"/>
+                                <Label Content="Content Pack Directory&#xA;" HorizontalAlignment="Left" Margin="1,123,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="36" Grid.ColumnSpan="2"/>
+                                <Button Content="Choose Folder" HorizontalAlignment="Left" Margin="579,128,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_ShrinkChoosePack" Grid.Column="1" Height="22"/>
+                                <Label Content="The location of your original Content Pack that will be checked against the VMF" HorizontalAlignment="Left" Margin="12,151,0,0" VerticalAlignment="Top" Width="538" Grid.ColumnSpan="2"/>
+                                <Label Content="Output Directory&#xA;" HorizontalAlignment="Left" Margin="1,177,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="36" Grid.ColumnSpan="2"/>
+                                <Button Content="Choose Folder" HorizontalAlignment="Left" Margin="579,181,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_ShrinkChooseOutputDir" Grid.Column="1" Height="22"/>
+                                <Label Content="The location of your new Content Pack folder to have the found resources copied to" HorizontalAlignment="Left" Margin="12,204,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2"/>
+                                <Label Content="Overall Progress" HorizontalAlignment="Left" Margin="4,423,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Width="118" Grid.ColumnSpan="2"/>
+                                <ProgressBar x:Name="ShrinkOverallPB" HorizontalAlignment="Left" Height="28" Margin="59.416,424,0,0" VerticalAlignment="Top" Width="643" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+                                    <ProgressBar.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform AngleX="1.66"/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="0.304"/>
+                                        </TransformGroup>
+                                    </ProgressBar.RenderTransform>
+                                </ProgressBar>
+                                <Label Content="Current Progress" HorizontalAlignment="Left" Margin="4,454,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="33" FontSize="14" Width="124" Grid.ColumnSpan="2"/>
+                                <ProgressBar x:Name="ShrinkCurrentPB" HorizontalAlignment="Left" Height="28" Margin="60.416,458,0,0" VerticalAlignment="Top" Width="642" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+                                    <ProgressBar.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform AngleX="1.66"/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="0.304"/>
+                                        </TransformGroup>
+                                    </ProgressBar.RenderTransform>
+                                </ProgressBar>
+                                <Label x:Name="ShrinkStatusText" Content="" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="695" Grid.Row="1" Grid.ColumnSpan="2"/>
+                                <Button x:Name="ShrinkStart" Content="Start" HorizontalAlignment="Left" Margin="599.416,493,0,0" VerticalAlignment="Top" Width="100" Height="32" Click="ShrinkStart_Click" FontSize="20" Grid.RowSpan="2" Grid.Column="1"/>
+                                <Label Content="Include Directory&#xA;" HorizontalAlignment="Left" Margin="1,234,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="36" Grid.ColumnSpan="2"/>
+                                <Button Content="Choose Folder" HorizontalAlignment="Left" Margin="579,239,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_ShrinkChooseIncludeDir" Grid.Column="1"/>
+                                <Label Content="(Optional) The location of a folder to have separate content automatically incorporated &#xA;into the generated content pack. Useful for when you have custom content that &#xA;isn't directly used in the map." HorizontalAlignment="Left" Margin="12,261,0,0" VerticalAlignment="Top" Width="486" Height="61" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="ShrinkMapPathBox" HorizontalAlignment="Left" Height="23" Margin="41.416,76,0,0" VerticalAlignment="Top" Width="500" Grid.Column="1"/>
+                                <TextBox x:Name="ShrinkCPDirBox" HorizontalAlignment="Left" Height="23" Margin="106,128,0,0" VerticalAlignment="Top" Width="435" Grid.Column="1"/>
+                                <TextBox x:Name="ShrinkOutputPathBox" HorizontalAlignment="Left" Height="23" Margin="51,181,0,0" VerticalAlignment="Top" Width="490" Grid.Column="1"/>
+                                <TextBox x:Name="ShrinkIncludePathBox" HorizontalAlignment="Left" Height="23" Margin="51,239,0,0" VerticalAlignment="Top" Width="490" Grid.Column="1"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Workshop Uploader">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
